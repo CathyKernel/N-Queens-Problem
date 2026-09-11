@@ -67,7 +67,3 @@ to the next complete board.
 - Solution counts are computed in the browser with the classic three-bitmask
   recursion; fundamental counts use canonical representatives over the eight
   board symmetries (values match OEIS A000170 / A002562).
-
-## License
-
-MIT — see [LICENSE](../LICENSE) at the repo root.
