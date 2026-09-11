@@ -7,44 +7,6 @@ boards of 4 to 12 queens.
 
 Built with **Next.js 16 · React 19 · Tailwind CSS 4 · shadcn/ui**.
 
-## Quick start
-
-```bash
-npm install
-npm run dev
-# open http://localhost:3000
-```
-
-Production build:
-
-```bash
-npm run build
-npm start
-```
-
-> Prefer zero setup? The `standalone/` folder at the repo root contains the
-> same visualizer as a single dependency-free `index.html` — just open it in
-> a browser (or serve it on GitHub Pages).
-
-## Project layout
-
-```
-src/
-├── app/
-│   ├── page.tsx                 # server component; reads nqueens.ts for the code tab
-│   └── layout.tsx               # metadata + fonts
-├── components/
-│   ├── nqueens/
-│   │   ├── NQueensApp.tsx       # shell: tabs + board-size slider (4–12)
-│   │   ├── AnimatePanel.tsx     # playback controls, rAF loop, stats, shortcuts
-│   │   ├── ChessBoard.tsx       # grid, attack tint, SVG conflict lines
-│   │   ├── SolutionsPanel.tsx   # solution browser + notation
-│   │   └── CodePanel.tsx        # "How It Works" cards + live source
-│   └── ui/                      # shadcn/ui primitives used by the app
-└── lib/
-    └── nqueens.ts               # engine: NQueensAnimator, counting, enumeration
-```
-
 ## How the animation works
 
 The backtracking search is implemented as a **generator** that yields one
@@ -57,13 +19,3 @@ events/second).
 
 Keyboard: `Space` toggles play, `←`/`→` step one event, "Next solution" fast-forwards
 to the next complete board.
-
-## Notes
-
-- `src/app/page.tsx` reads `src/lib/nqueens.ts` from disk at request time to
-  display the real source in the "How It Works" tab. This works with
-  `next dev` and `next start`; other deployment targets may need the source
-  inlined instead.
-- Solution counts are computed in the browser with the classic three-bitmask
-  recursion; fundamental counts use canonical representatives over the eight
-  board symmetries (values match OEIS A000170 / A002562).
